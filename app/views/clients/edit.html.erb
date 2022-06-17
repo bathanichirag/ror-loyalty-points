@@ -1,0 +1,21 @@
+<div class="container">
+
+<%= form_for @client, url: {action: :update} do |f| %>
+<%= csrf_meta_tags %>
+
+   <h3>Edit Client</h3>
+ <%= "<div>#{@client.errors.full_messages.first}</div>".html_safe if @client.errors.any? %>
+    <p>
+
+     <div>
+            <label>Client Name</label>
+            <%= f.text_field :name %>
+     </div>
+
+      </p>
+   <div>
+      <%= link_to 'Back', { controller: 'clients', action: 'index'} %>
+      <%= f.submit 'Update Client' %>
+    </div>
+<% end %>
+</div>
