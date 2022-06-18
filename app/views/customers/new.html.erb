@@ -1,0 +1,23 @@
+<div class="container">
+  <%= form_for @customer, url: {action: :create} do |f| %>
+  <%= csrf_meta_tags %>
+      <div>
+        <h3>Add a Customer</h3>
+      </div>
+      <div>
+        <p>
+          <%= "<div>#{@customer.errors.full_messages.first}</div>".html_safe if @customer.errors.any? %>
+        <div>
+            <label>Customer Name</label>
+              <%= f.text_field :name %>
+        </div>
+        <div>
+            <label>Birth Date</label>
+              <%= f.date_field :birth_date %>
+        </div>
+      <div>
+        <%= link_to 'Back', { controller: 'customers', action: 'index'} %>
+        <%= f.submit 'Create Customer' %>
+      </div>
+  <% end %>
+</div>

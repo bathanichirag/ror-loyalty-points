@@ -1,0 +1,24 @@
+<div class="container">
+
+<%= form_for @customer, url: {action: :update} do |f| %>
+<%= csrf_meta_tags %>
+
+   <h3>Edit Customer</h3>
+ <%= "<div>#{@customer.errors.full_messages.first}</div>".html_safe if @customer.errors.any? %>
+    <p>
+
+     <div>
+            <label>Customer Name</label>
+            <%= f.text_field :name %>
+     </div>
+     <div>
+        <label>Birth Date</label>
+          <%= f.date_field :birth_date %>
+      </div>
+      </p>
+   <div>
+      <%= link_to 'Back', { controller: 'customers', action: 'index'} %>
+      <%= f.submit 'Update Customer' %>
+    </div>
+<% end %>
+</div>

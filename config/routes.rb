@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'customers/new'
+  get 'customers/edit'
+  resources :customers
     get 'clients/new'
     get 'clients/edit'
     resources :clients
