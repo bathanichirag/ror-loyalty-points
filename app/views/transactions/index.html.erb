@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+ <div class="container">
+    <div>
+        <ul>
+            <li><%= link_to 'Customers', customers_path %></li>
+            <li><%= link_to 'Clients', clients_path %></li>
+            <li><%= link_to 'Transactions', transactions_path %></li>
+        </ul>
+    </div>
+    <%= flash[:notice] %>
+    <h3>Transaction List</h3>
+
+      <div>
+        <%= link_to 'Add Transaction', transactions_new_path %>
+      </div>
+      <br>
+    <table border="2">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Customer</th>
+        <th>Client</th>
+        <th>Amount</th>
+        <th>Currency</th>
+        <th>Transaction Date</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @transactions.each do |transaction| %>
+          <tr>
+            <td><%= transaction.id %></td>
+            <td><%= transaction.customer.name %></td>
+            <td><%= transaction.client.name %></td>
+            <td><%= transaction.amount %></td>
+            <td><%= transaction.currency_code %></td>
+            <td><%= transaction.transaction_date.strftime("%d-%m-%Y") %></td>
+
+           <div>
+               <td>
+                <%= link_to 'Delete', transaction_path(transaction), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+            </td>
+            </div>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    </div>
+  </body>
+</html>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_18_063933) do
+ActiveRecord::Schema.define(version: 2022_06_18_132935) do
 
   create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -25,4 +25,18 @@ ActiveRecord::Schema.define(version: 2022_06_18_063933) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "transactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.float "amount"
+    t.string "currency_code"
+    t.date "transaction_date"
+    t.bigint "customer_id", null: false
+    t.bigint "client_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_transactions_on_client_id"
+    t.index ["customer_id"], name: "index_transactions_on_customer_id"
+  end
+
+  add_foreign_key "transactions", "clients"
+  add_foreign_key "transactions", "customers"
 end
