@@ -21,7 +21,7 @@
         </div>
         <div>
             <label>Currency Code</label>
-             <%= f.text_field :currency_code %>
+            <%= f.select :currency_code, ['USD', 'EUR', 'INR', 'GBP']%>
         </div>
         <div>
             <label>Transaction Date</label>

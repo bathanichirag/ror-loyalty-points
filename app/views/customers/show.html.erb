@@ -1,2 +1,59 @@
-<h1>Customers#show</h1>
-<p>Find me in app/views/customers/show.html.erb</p>
+<!DOCTYPE html>
+<html>
+<body>
+ <div class="container">
+    <div>
+        <%= link_to 'Go Back', { controller: 'customers', action: 'index'} %>
+    </div>
+    <%= flash[:notice] %>
+    <h3>Customer Details</h3>
+		<p>
+			<div>
+          <b>Customer Name: </b>
+            <%= @result['customer'].name %>
+      </div>
+      <div>
+          <b>Birth Date: </b>
+            <%= @result['customer'].birth_date.strftime("%d-%m-%Y") %>
+      </div>
+      <div>
+          <b>Customer tier: </b>
+            <%= @result['customer_tier'] %>
+      </div>
+			<div>
+          <b>Total points: </b>
+            <%= @result['total_points'] %>
+      </div>
+		</p>
+		<hr/>
+		<h3>Rewards</h3>
+		<p>
+			<ul>
+			<% @result['other_rewards'].each do |reward| %>
+				<li><%= reward %></li>
+			<% end %>
+			</ul>
+		</p>
+		<hr/>
+		<h3>Monthly Rewards</h3>
+		<p>
+
+			<% @result['rewards'].each do |k, rewards| %>
+				<b><%= I18n.t("month_#{k}") %> </b>
+				<ul>
+				<% rewards.each do |reward| %>
+					<li><%= reward %></li>
+				<% end %>
+				</ul>
+				<hr/>
+			<% end %>
+
+		</p>
+    </div>
+  </body>
+</html>
+
+
+
+
+
